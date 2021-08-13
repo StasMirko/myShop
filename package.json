@@ -2,12 +2,13 @@
   "name": "myshop",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "rimraf dist && npm run lint && copyfiles -e src/email-templates/* .ts -f src/email-templates/*.* dist/email-templates && tsc-watch --outDir ./dist --onSuccess \"npm run start:dev\" --onFailure \"'echo Compilation Failed'\"",
-    "start:dev": "node -r dotenv/config --inspect=0.0.0.0:9228 ./dist/",
-    "lint": "eslint --fix --ext .ts, .js src"
+    "start:dev": "node -r dotenv/config --inspect=0.0.0.0:9227 ./dist/",
+    "start": "rimraf dist && npm run lint && copyfiles -e src/email-templates/*.ts -f src/email-templates/*.* dist/email-templates/ && tsc-watch --outDir ./dist --onSuccess \"npm run start:dev\" --onFailure \"'echo Compilation Failed'\"",
+    "build": "rimraf dist && tsc",
+    "tsc": "rimraf dist && npm run lint && tsc --watch",
+    "lint": "eslint --fix --ext .ts,.js src"
   },
   "dependencies": {
     "cors": "^2.8.5",
